@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "495874096322",
+    "firebase_url": "https://window-shopper-82edc.firebaseio.com",
+    "project_id": "window-shopper-82edc",
+    "storage_bucket": "window-shopper-82edc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495874096322:android:07dba7b3e6ff8f6a",
+        "android_client_info": {
+          "package_name": "com.example.topipenttila.windowshopper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495874096322-j15jb65jk9tgtdufovah9fqf0gugti44.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.topipenttila.windowshopper",
+            "certificate_hash": "272930ade3ac2c3df5617da48fa292402dc9a99a"
+          }
+        },
+        {
+          "client_id": "495874096322-m04dsiqng2nbs03rt5f750if9of0p1hm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLHbF_WyoIyoZlY2jT8e-QgH9trXTO9Y0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495874096322-m04dsiqng2nbs03rt5f750if9of0p1hm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
