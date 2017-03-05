@@ -28,10 +28,10 @@ public class ShopsFragment extends Fragment {
     private final String TAG = "ShopsFragment";
     private ListView lv;
     // Listview Adapter
-    ArrayAdapter<String> arrayAdapter;
+    ArrayAdapter<ListObject> arrayAdapter;
     // Search EditText
     EditText inputSearch;
-    ArrayList<String> objects = new ArrayList<>();
+    ArrayList<ListObject> objects = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.shops_fragment, container, false);
@@ -39,6 +39,7 @@ public class ShopsFragment extends Fragment {
         lv = (ListView) v.findViewById(R.id.list_view_shops);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
+        ValueEventListener eventListener;
 
         // Read from the database
         myRef.child("shops").addValueEventListener(new ValueEventListener() {
@@ -47,10 +48,9 @@ public class ShopsFragment extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    objects.add(snapshot.child("name").getValue().toString());
-                    System.out.println(snapshot.child("name").getValue());
+                    objects.add(new ListObject(snapshot.child("name").getValue().toString(), snapshot.child("address").getValue().toString()));
                     // Adding items to listview
-                    arrayAdapter = new ArrayAdapter<String>(v.getContext(), R.layout.simple_list_item, R.id.company_name, objects);
+                    arrayAdapter = new CustomSimpleAdapter(v.getContext(), objects);
                     lv.setAdapter(arrayAdapter);
                     v.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                 }

@@ -39,18 +39,6 @@ public class SpecialsFragment extends Fragment {
     DatabaseReference myRef = database.getReference();
     ValueEventListener eventListener;
 
-    @Override
-    public void onDestroy() {
-        Log.e(TAG, "onD: ");
-        super.onDestroy();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.e(TAG, "onPause: ");
-        myRef.removeEventListener(eventListener);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,8 +54,7 @@ public class SpecialsFragment extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        objects.add(new ListObject(snapshot.child("name").getValue().toString(), snapshot.child("description").getValue().toString(), snapshot.child("price").getValue().toString()));
-                        System.out.println(snapshot.child("name").getValue());
+                        objects.add(new ListObject(snapshot.child("name").getValue().toString(), snapshot.child("description").getValue().toString(), snapshot.child("price").getValue().toString(), snapshot.child("store").getValue().toString()));
                     // Adding items to listview
                     arrayAdapter = new CustomAdapter(v.getContext(), objects);
                     lv.setAdapter(arrayAdapter);

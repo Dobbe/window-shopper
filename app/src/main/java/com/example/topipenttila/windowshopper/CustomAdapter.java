@@ -2,6 +2,7 @@ package com.example.topipenttila.windowshopper;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
  */
 
 public class CustomAdapter extends ArrayAdapter<ListObject> {
+
+    final String TAG = "CustomAdapter";
 
     public CustomAdapter (Context context, ArrayList<ListObject> objects) {
         super(context, 0, objects);
@@ -39,8 +42,14 @@ public class CustomAdapter extends ArrayAdapter<ListObject> {
         tvName.setText(object.name);
         tvDescription.setText(object.description);
         tvPrice.setText(object.price);
-        productImage.setImageResource(R.drawable.tv);
-        companyImage.setImageResource(R.drawable.homecorp);
+        Log.e(TAG, object.name);
+        if (object.name.equals("Samsung TV")) productImage.setImageResource(R.drawable.flat_tv);
+        if (object.name.equals("Coca Cola")) productImage.setImageResource(R.drawable.coke);
+        if (object.name == "Samsung Fridge") productImage.setImageResource(R.drawable.fridge);
+
+        if (object.store.equals("Home Corp")) companyImage.setImageResource(R.drawable.homecorp);
+        if (object.store.equals("Pick N Pay")) companyImage.setImageResource(R.drawable.picknpay);
+        if (object.store.equals("Hi fi Corp ")) companyImage.setImageResource(R.drawable.hifi);
         // Return the completed view to render on screen
         return convertView;
     }
