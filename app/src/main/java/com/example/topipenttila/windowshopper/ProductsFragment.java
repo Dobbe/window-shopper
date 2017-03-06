@@ -47,7 +47,6 @@ public class ProductsFragment extends Fragment {
         v.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
         lv = (ListView) v.findViewById(R.id.list_view);
 
-
         final ValueEventListener valueEventListener = new ValueEventListener()
         {
             @Override
@@ -59,13 +58,11 @@ public class ProductsFragment extends Fragment {
                 {
                     objects.add(new ListObject(snapshot.child("name").getValue().toString(), snapshot.child("description").getValue().toString(), snapshot.child("price").getValue().toString(), snapshot.child("store").getValue().toString()));
                     // Adding items to listview
-                    arrayAdapter = new CustomAdapter(v.getContext(), objects);
-                    lv.setAdapter(arrayAdapter);
-
                 }
+                arrayAdapter = new CustomAdapter(v.getContext(), objects);
+                lv.setAdapter(arrayAdapter);
 
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError)
             {

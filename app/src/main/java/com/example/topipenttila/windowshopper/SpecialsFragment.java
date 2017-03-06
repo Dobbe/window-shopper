@@ -35,16 +35,17 @@ public class SpecialsFragment extends Fragment {
     ArrayAdapter<ListObject> arrayAdapter;
     ArrayList<ListObject> objects = new ArrayList<>();
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference();
-    ValueEventListener eventListener;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.specials_fragment, container, false);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+        ValueEventListener eventListener;
         // Listview Data
         lv = (ListView) v.findViewById(R.id.list_view);
+        arrayAdapter = new CustomAdapter(v.getContext(), objects);
+        lv.setAdapter(arrayAdapter);
 
         // Read from the database
         eventListener = new ValueEventListener() {
@@ -54,14 +55,12 @@ public class SpecialsFragment extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        objects.add(new ListObject(snapshot.child("name").getValue().toString(), snapshot.child("description").getValue().toString(), snapshot.child("price").getValue().toString(), snapshot.child("store").getValue().toString()));
-                    // Adding items to listview
-                    arrayAdapter = new CustomAdapter(v.getContext(), objects);
-                    lv.setAdapter(arrayAdapter);
-                    v.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                    objects.add(new ListObject(snapshot.child("name").getValue().toString(), snapshot.child("description").getValue().toString(), snapshot.child("price").getValue().toString(), snapshot.child("store").getValue().toString()));
                 }
-                //String value = dataSnapshot.getValue();
-                //Log.e(TAG, "Value is: " + value);
+                arrayAdapter.notifyDataSetChanged();
+                //arrayAdapter = new CustomAdapter(v.getContext(), objects);
+                //lv.setAdapter(arrayAdapter);
+                v.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
             }
 
             @Override

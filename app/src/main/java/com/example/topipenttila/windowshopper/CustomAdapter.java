@@ -45,7 +45,7 @@ public class CustomAdapter extends ArrayAdapter<ListObject> {
         Log.e(TAG, object.name);
         if (object.name.equals("Samsung TV")) productImage.setImageResource(R.drawable.flat_tv);
         if (object.name.equals("Coca Cola")) productImage.setImageResource(R.drawable.coke);
-        if (object.name == "Samsung Fridge") productImage.setImageResource(R.drawable.fridge);
+        if (object.name.equals("Samsung Fridge")) productImage.setImageResource(R.drawable.fridge);
 
         if (object.store.equals("Home Corp")) companyImage.setImageResource(R.drawable.homecorp);
         if (object.store.equals("Pick N Pay")) companyImage.setImageResource(R.drawable.picknpay);
